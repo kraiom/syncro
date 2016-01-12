@@ -1,0 +1,23 @@
+{
+  "name": "syncro",
+  "description": "A minimalist action game",
+  "main": "gulpfile.js",
+  "authors": [
+    "Breno Lima de Freitas <brenolimadefreitas@gmail.com> (https://breno.io/)",
+    "Eduardo Romao da Rocha <>"
+  ],
+  "license": "Apache 2.0",
+  "homepage": "https://github.com/brenolf/syncro",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "phaser": "~2.4.4"
+  }
+}
