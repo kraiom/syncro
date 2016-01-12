@@ -12,7 +12,10 @@
     "type": "git",
     "url": "https://github.com/brenolf/syncro.git"
   },
-  "author": "Breno Lima de Freitas <brenolimadefreitas@gmail.com> (https://breno.io/)",
+  "author": [
+    "Breno Lima de Freitas <brenolimadefreitas@gmail.com> (https://breno.io/)",
+    "Eduardo Romao da Rocha <romao.neles@gmail.com>"
+  ],
   "license": "Apache 2.0",
   "bugs": {
     "url": "https://github.com/brenolf/syncro/issues"
