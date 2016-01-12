@@ -1,4 +1,4 @@
-import GeometrySprite from '../objects/GeometrySprite'
+import GeometrySprite from './GeometrySprite'
 
 export default class Circle extends GeometrySprite {
   constructor (context, color, circumference) {

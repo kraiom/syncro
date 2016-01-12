@@ -1,4 +1,4 @@
-import GeometrySprite from '../objects/GeometrySprite'
+import GeometrySprite from './GeometrySprite'
 
 export default class Rectangle extends GeometrySprite {
   constructor (context, color, W, H) {
