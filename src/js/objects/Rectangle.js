@@ -1,13 +1,19 @@
-import GeometrySprite from './GeometrySprite'
+import Shape from './Shape'
 
-export default class Rectangle extends GeometrySprite {
-  constructor (context, color, W, H) {
-    H = H ? H : W
-
+export default class Rectangle extends Phaser.Sprite {
+  constructor (context, color, W, H, x, y, group) {
     const builder = function () {
       this.rect(0, 0, W, H)
     }
 
-    super(context.game, W, H, color, builder)
+    const shape = new Shape(context.game, W, H, color, builder)
+
+    group = group || context.game.world
+
+    super(context.game, x, y)
+
+    this.anchor.set(0.5)
+
+    group.create(x, y, shape)
   }
 }
