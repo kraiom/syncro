@@ -5,13 +5,11 @@ const MAIN = '#FDD55A'
 
 const SIZE = 20
 
-const MARGIN = 20
+const MARGIN = 40
 
 export default class Player extends Circle {
   constructor (context, center, main = true) {
     const color = main ? MAIN : DEACTIVATED
-
-    console.log(center)
 
     super(context, color, 20, center.x, center.y - SIZE - MARGIN)
 

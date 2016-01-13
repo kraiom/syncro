@@ -36,7 +36,6 @@ export default class Game extends World {
   }
 
   callback () {
-    console.log('hit')
   }
 
   lost () {

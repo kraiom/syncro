@@ -30,8 +30,14 @@ export default class Preload {
   loadSprites () {
   }
 
+  /*
+    "Rhinoceros" Kevin MacLeod (incompetech.com)
+    Licensed under Creative Commons: By Attribution 3.0 License
+    http://creativecommons.org/licenses/by/3.0/
+  */
+
   loadAudios () {
-    let audios = []
+    let audios = ['Rhinoceros']
 
     audios.forEach(name => {
       this.load.audio(name, [

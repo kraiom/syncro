@@ -1,10 +1,14 @@
 import Input from './Input'
 
-const VELOCITY = 100
+const VELOCITY = 200
 
 export default class World {
   create () {
     this.game.physics.startSystem(Phaser.Physics.ARCADE)
+
+    this.music = this.game.add.audio('Rhinoceros')
+    this.music.loop = true
+    this.music.play()
 
     this.input = new Input(this)
   }

@@ -59,7 +59,7 @@ export default class Rail {
 
     const TOTAL_W = Math.floor(GAME.width * 0.2)
 
-    const BORDER_W = Math.floor((TOTAL_W * 0.2) / 2)
+    const BORDER_W = Math.floor((TOTAL_W * 0.05) / 2)
     const TRAIL_W = Math.floor(TOTAL_W - BORDER_W)
 
     const H = this.context.game.height
