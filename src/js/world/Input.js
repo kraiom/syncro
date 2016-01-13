@@ -10,23 +10,20 @@ export default class Input {
 
     this.cursors = context.game.input.keyboard.createCursorKeys()
 
-    KEYS.forEach(name => {
-      const key = context.game.input.keyboard.addKey(Phaser.Keyboard[name])
-      key.onDown.add(this.compute.bind(this, name))
-    })
-
     context.game.input.keyboard.addKeyCapture(KEYS.map(name => {
-      Phaser.Keyboard[name.toUpperCase()]
+      Phaser.Keyboard[name]
     }))
   }
 
-  compute (name) {
+  update () {
     if (this.context.paused) {
       return
     }
 
-    name = name.toLowerCase()
-
-    this.context[`on_${name}_down`]()
+    KEYS.forEach(name => {
+      if (this.context.game.input.keyboard.isDown(Phaser.Keyboard[name])) {
+        this.context[`on_${name.toLowerCase()}_down`]()
+      }
+    })
   }
 }

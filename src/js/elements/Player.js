@@ -5,7 +5,7 @@ const MAIN = '#FDD55A'
 
 export default class Player extends Circle {
   constructor (context, main = true) {
-    const bottom = context.game.height - 20
+    const bottom = context.game.height - 50
 
     let color = MAIN
     let x = 200

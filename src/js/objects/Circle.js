@@ -13,10 +13,10 @@ export default class Circle extends Phaser.Sprite {
 
     group = group || context.game.world
 
-    super(context.game, x, y)
+    super(context.game, x, y, shape)
 
     this.anchor.set(0.5)
 
-    group.create(x, y, shape)
+    group.add(this)
   }
 }

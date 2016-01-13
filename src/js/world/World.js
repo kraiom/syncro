@@ -12,11 +12,20 @@ export default class World {
     this.input = new Input(this)
 
     let rail = new Rail(this)
-    let playerA = new Player(this)
-    let playerD = new Player(this, false)
+
+    this.players = {
+      main: new Player(this),
+      shadow: new Player(this, false)
+    }
+
+    console.log(this.game.input.keyboard)
   }
 
   update () {
+    this.players.main.body.velocity.x = 0
+    this.players.shadow.body.velocity.x = 0
+
+    this.input.update()
   }
 
   pause () {
@@ -26,11 +35,13 @@ export default class World {
   }
 
   on_left_down () {
-    console.log('left')
+    this.players.main.body.velocity.x = -100
+    this.players.shadow.body.velocity.x = -100
   }
 
   on_right_down () {
-    console.log('right')
+    this.players.main.body.velocity.x = 100
+    this.players.shadow.body.velocity.x = 100
   }
 
   on_spacebar_down () {
