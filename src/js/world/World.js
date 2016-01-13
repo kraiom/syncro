@@ -1,6 +1,7 @@
+import Input from './Input'
+
 import Rail from '../elements/Rail'
-import Rectangle from '../objects/Rectangle'
-import Circle from '../objects/Circle'
+import Player from '../elements/Player'
 
 const GAME = require('../../json/game.json')
 
@@ -8,11 +9,11 @@ export default class World {
   create () {
     this.game.physics.startSystem(Phaser.Physics.ARCADE)
 
-    let rail = new Rail(this)
+    this.input = new Input(this)
 
-    new Rectangle(this, 'white', 50, 50, 200, 200)
-    new Circle(this, 'red', 50, 200, 200)
-    new Circle(this, 'orange', 50, 400, 400)
+    let rail = new Rail(this)
+    let playerA = new Player(this)
+    let playerD = new Player(this, false)
   }
 
   update () {
@@ -22,5 +23,17 @@ export default class World {
   }
 
   resume () {
+  }
+
+  on_left_down () {
+    console.log('left')
+  }
+
+  on_right_down () {
+    console.log('right')
+  }
+
+  on_spacebar_down () {
+    console.log('space')
   }
 }
