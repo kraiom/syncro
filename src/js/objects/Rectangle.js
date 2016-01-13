@@ -12,8 +12,21 @@ export default class Rectangle extends Phaser.Sprite {
 
     super(context.game, x, y, shape)
 
-    this.anchor.set(0.5)
+    this.anchor.set(0.5, 0.5)
+
+    this.context = context
+
+    this.builder = builder
+
+    this.W = W
+
+    this.H = H
 
     group.add(this)
+  }
+
+  recolorShape (color) {
+    this.loadTexture(new Shape(this.context.game, this.W,
+      this.H, color, this.builder))
   }
 }

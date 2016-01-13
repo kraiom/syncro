@@ -3,19 +3,17 @@ import Circle from '../objects/Circle'
 const DEACTIVATED = '#f2f2f2'
 const MAIN = '#FDD55A'
 
+const SIZE = 20
+
+const MARGIN = 20
+
 export default class Player extends Circle {
-  constructor (context, main = true) {
-    const bottom = context.game.height - 50
+  constructor (context, center, main = true) {
+    const color = main ? MAIN : DEACTIVATED
 
-    let color = MAIN
-    let x = 200
+    console.log(center)
 
-    if (!main) {
-      color = DEACTIVATED
-      x = 600
-    }
-
-    super(context, color, 20, x, bottom)
+    super(context, color, 20, center.x, center.y - SIZE - MARGIN)
 
     this.active = main
 

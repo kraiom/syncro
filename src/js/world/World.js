@@ -1,7 +1,5 @@
 import Input from './Input'
 
-import Rail from '../elements/Rail'
-
 const GAME = require('../../json/game.json')
 
 const VELOCITY = 100
@@ -11,8 +9,6 @@ export default class World {
     this.game.physics.startSystem(Phaser.Physics.ARCADE)
 
     this.input = new Input(this)
-
-    let rail = new Rail(this)
   }
 
   update () {
@@ -44,6 +40,10 @@ export default class World {
   on_spacebar_down () {
     this.players.forEach(player => {
       player.swap()
+    })
+
+    this.rails.forEach(rail => {
+      rail.swap()
     })
   }
 }

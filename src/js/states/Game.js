@@ -1,6 +1,7 @@
 import World from '../world/World'
 import UI from '../ui/UI'
 import Player from '../elements/Player'
+import Rail from '../elements/Rail'
 
 export default class Game extends World {
   create () {
@@ -10,9 +11,14 @@ export default class Game extends World {
 
     this.paused = false
 
+    this.rails = [
+      new Rail(this),
+      new Rail(this, false)
+    ]
+
     this.players = [
-      new Player(this),
-      new Player(this, false)
+      new Player(this, this.rails[0].basis),
+      new Player(this, this.rails[1].basis, false)
     ]
 
     this.main = 0

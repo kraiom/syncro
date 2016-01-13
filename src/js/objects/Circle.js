@@ -19,7 +19,7 @@ export default class Circle extends Phaser.Sprite {
 
     this.circumference = circumference
 
-    this.anchor.set(0.5)
+    this.anchor.set(0.5, 0.5)
 
     this.builder = builder
 
