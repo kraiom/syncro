@@ -25,6 +25,8 @@ export default class Game extends World {
     this.maze = new Maze(this)
 
     this.main = 0
+
+    this.START = this.game.time.now
   }
 
   update () {
