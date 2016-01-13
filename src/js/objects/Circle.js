@@ -15,8 +15,19 @@ export default class Circle extends Phaser.Sprite {
 
     super(context.game, x, y, shape)
 
+    this.context = context
+
+    this.circumference = circumference
+
     this.anchor.set(0.5)
 
+    this.builder = builder
+
     group.add(this)
+  }
+
+  recolorShape (color) {
+    this.loadTexture(new Shape(this.context.game, this.circumference,
+      this.circumference, color, this.builder))
   }
 }

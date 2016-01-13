@@ -1,7 +1,6 @@
 const KEYS = [
   'LEFT',
-  'RIGHT',
-  'SPACEBAR'
+  'RIGHT'
 ]
 
 export default class Input {
@@ -10,9 +9,9 @@ export default class Input {
 
     this.cursors = context.game.input.keyboard.createCursorKeys()
 
-    context.game.input.keyboard.addKeyCapture(KEYS.map(name => {
-      Phaser.Keyboard[name]
-    }))
+    this.space = context.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR)
+
+    this.space.onDown.add(this.context.on_spacebar_down, context)
   }
 
   update () {

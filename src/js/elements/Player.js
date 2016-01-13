@@ -17,8 +17,16 @@ export default class Player extends Circle {
 
     super(context, color, 20, x, bottom)
 
+    this.active = main
+
     this.context = context
 
     context.game.physics.arcade.enable(this)
+  }
+
+  swap () {
+    this.active = !this.active
+
+    this.recolorShape(this.active ? MAIN : DEACTIVATED)
   }
 }
