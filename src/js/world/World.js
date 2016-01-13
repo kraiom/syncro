@@ -40,6 +40,8 @@ export default class World {
   }
 
   on_spacebar_down () {
+    this.main = (this.main + 1) % 2
+    
     this.players.forEach(player => {
       player.swap()
     })
@@ -47,5 +49,7 @@ export default class World {
     this.rails.forEach(rail => {
       rail.swap()
     })
+
+    this.maze.swap()
   }
 }

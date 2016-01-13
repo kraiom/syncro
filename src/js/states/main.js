@@ -2,6 +2,7 @@ import Game from './Game'
 import Splash from './Splash'
 import Preload from './Preload'
 import Boot from './Boot'
+import GameOver from './GameOver'
 
 const GAME_DATA = require('../../json/game')
 
@@ -19,6 +20,7 @@ window.GAME = function (handler) {
   game.state.add('preload', Preload)
   game.state.add('splash', Splash)
   game.state.add('game', Game)
+  game.state.add('gameover', GameOver)
 
   game.state.start('boot', true, false, handler)
 }

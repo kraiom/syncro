@@ -36,9 +36,8 @@ export default class Game extends World {
         this.game.physics.arcade.collide(player, rail.LB)
       })
     })
-  }
 
-  callback () {
+    this.maze.update()
   }
 
   lost () {

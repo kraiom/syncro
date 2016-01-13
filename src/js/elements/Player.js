@@ -25,4 +25,10 @@ export default class Player extends Circle {
 
     this.recolorShape(this.active ? MAIN : DEACTIVATED)
   }
+
+  hit () {
+    if (this.active) {
+      this.context.state.start('gameover', true, false, this.data)
+    }
+  }
 }
