@@ -1,7 +1,5 @@
 import Input from './Input'
 
-const GAME = require('../../json/game.json')
-
 const VELOCITY = 100
 
 export default class World {
@@ -27,13 +25,13 @@ export default class World {
 
   on_left_down () {
     this.players.forEach(player => {
-      player.body.velocity.x = player.active ? -VELOCITY : 0
+      player.body.velocity.x = -VELOCITY
     })
   }
 
   on_right_down () {
     this.players.forEach(player => {
-      player.body.velocity.x = player.active ? VELOCITY : 0
+      player.body.velocity.x = VELOCITY
     })
   }
 

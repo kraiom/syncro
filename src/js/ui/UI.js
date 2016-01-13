@@ -1,5 +1,3 @@
-const GAME = require('../../json/game.json')
-
 export default class UI {
   constructor (context) {
     this.context = context
