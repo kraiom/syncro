@@ -1,15 +1,16 @@
 export default class Preload {
   preload () {
     let styling = {
-      font: 'Courier',
-      fontSize: '30px',
+      font: 'Lato',
+      fontSize: '72px',
+      fontWeight: 100,
       fill: '#ffffff'
     }
 
     this.loading = this.add.text(
       this.game.world.centerX,
       this.game.world.centerY + 10,
-      'Loading',
+      'L o a d i n g . . .',
       styling
     )
 

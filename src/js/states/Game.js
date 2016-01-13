@@ -2,6 +2,7 @@ import World from '../world/World'
 import UI from '../ui/UI'
 import Player from '../elements/Player'
 import Rail from '../elements/Rail'
+import Maze from '../elements/Maze'
 
 export default class Game extends World {
   create () {
@@ -20,6 +21,8 @@ export default class Game extends World {
       new Player(this, this.rails[0].basis),
       new Player(this, this.rails[1].basis, false)
     ]
+
+    this.maze = new Maze(this)
 
     this.main = 0
   }

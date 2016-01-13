@@ -39,5 +39,8 @@
     "vinyl-source-stream": "^1.1.0",
     "yargs": "^3.23.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-cssnano": "^2.1.0"
+  }
 }

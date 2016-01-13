@@ -8,7 +8,7 @@ export default class World {
 
     this.music = this.game.add.audio('Rhinoceros')
     this.music.loop = true
-    this.music.play()
+    // this.music.play()
 
     this.input = new Input(this)
   }

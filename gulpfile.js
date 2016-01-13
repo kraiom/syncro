@@ -11,15 +11,18 @@ var gulp           = require('gulp'),
     gulpif         = require('gulp-if'),
     connect        = require('gulp-connect'),
     bower          = require('gulp-main-bower-files'),
-    flatten        = require('gulp-flatten')
+    flatten        = require('gulp-flatten'),
+    minifyCSS      = require('gulp-cssnano'),
+    prefixer       = require('gulp-autoprefixer')
 
 var DEBUG = argv.production ? false : true
 var NAME = require('./package').name
 
-gulp.task('default', ['scripts', 'html', 'img', 'audio'])
+gulp.task('default', ['scripts', 'html', 'img', 'audio', 'font', 'styles'])
 
 gulp.task('watch', ['default'], function () {
     gulp.watch('./src/js/**/*', ['scripts'])
+    gulp.watch('./src/css/**/*', ['styles'])
     gulp.watch('./src/html/**/*', ['html'])
     gulp.watch('./src/json/**/*', ['json', 'scripts'])
 })
@@ -63,6 +66,14 @@ gulp.task('html', function() {
   .pipe(gulp.dest('./build/'))
 })
 
+gulp.task ('styles', function () {
+  return gulp
+  .src('./src/css/*')
+  .pipe(prefixer())
+  .pipe(minifyCSS())
+  .pipe(gulp.dest('./build/assets/css'))
+});
+
 gulp.task('json', function() {
   return gulp
   .src('./src/json/*')
@@ -73,6 +84,12 @@ gulp.task('audio', function () {
   return gulp
   .src('./src/audio/*')
   .pipe(gulp.dest('./build/assets/audio'))
+})
+
+gulp.task('font', function () {
+  return gulp
+  .src('./src/fonts/*')
+  .pipe(gulp.dest('./build/assets/fonts'))
 })
 
 gulp.task('img', function() {
