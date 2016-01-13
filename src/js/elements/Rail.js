@@ -31,6 +31,10 @@ export default class Rail {
       this.RB,
       this.T
     ])
+
+    this.LB.body.immovable = true
+    this.RB.body.immovable = true
+    this.T.body.immovable = true
   }
 
   get basis () {

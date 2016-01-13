@@ -26,6 +26,17 @@ export default class Game extends World {
 
   update () {
     super.update()
+
+    this.rails.forEach(rail => {
+      this.players.forEach(player => {
+        this.game.physics.arcade.collide(player, rail.RB)
+        this.game.physics.arcade.collide(player, rail.LB)
+      })
+    })
+  }
+
+  callback () {
+    console.log('hit')
   }
 
   lost () {
