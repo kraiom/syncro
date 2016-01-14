@@ -36,7 +36,11 @@ export default class Maze {
     const PADDLE = first ? 'L' : 'R'
 
     for (let i = 0; i < 30; i++) {
-      const SIDE_DIE = Math.random()
+      const GO_LEFT = Math.random() < 0.5
+
+      const STICK_TO_WALL = Math.random() < 0.3
+
+      const MIDDLE_BLOCK = Math.random() < 0.2
 
       const PLUS = Math.floor(Math.random() * 170) + 100
 
@@ -46,14 +50,23 @@ export default class Maze {
                 PLUS +
                 Math.floor(Math.random() * Math.min(this.context.ELAPSED, 30))
 
-      const W = 50 +
+      let W = 50 +
                 Math.floor(Math.random() * 50) +
                 Math.floor(Math.random() * Math.min(this.context.ELAPSED, 30))
 
-      const L = this.context.rails[j].LB.x +
-                this.context.rails[j].LB.width / 2 +
-                ((SIDE_DIE < 0.5) ? 50 : (this.context.rails[j].T.width - 50)) +
-                ((SIDE_DIE < 0.5) ? (100 - W) : (W - 100))
+      let L = this.context.rails[j].LB.x +
+              this.context.rails[j].LB.width / 2 +
+              (GO_LEFT ? 50 : (this.context.rails[j].T.width - 50)) +
+              (STICK_TO_WALL ? Math.abs(Math.floor((W - 100) / 2)) : 0)
+
+      if (MIDDLE_BLOCK) {
+        W = 20 +
+            Math.floor(Math.random() * 60) +
+            Math.floor(Math.random() * Math.min(this.context.ELAPSED * 2, 50))
+
+        L = this.context.rails[j].LB.x +
+            this.context.rails[j].T.width / 2
+      }
 
       const color = this.context.rails[j].LB.color
 

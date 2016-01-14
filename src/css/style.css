@@ -56,7 +56,7 @@ body {
   width: 900px;
   height: 500px;
   margin: auto;
-  border: solid 1px #0a0a12;
+  /*border: solid 1px #0a0a12;*/
   content: '';
   font-family: 'Lato', sans-serif;
   font-weight: 100;
