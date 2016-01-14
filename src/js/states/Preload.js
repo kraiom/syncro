@@ -25,7 +25,7 @@ export default class Preload {
   }
 
   create () {
-    this.state.start('splash', true, false, this.data)
+    this.state.start('splash', true, false)
   }
 
   /*
@@ -43,10 +43,14 @@ export default class Preload {
     "Rhinoceros" Kevin MacLeod (incompetech.com)
     Licensed under Creative Commons: By Attribution 3.0 License
     http://creativecommons.org/licenses/by/3.0/
+
+    "korgpoly800bs C6" patchen (freesound.org)
+    Licensed under Creative Commons: By Attribution 3.0 License
+    http://creativecommons.org/licenses/by/3.0/
   */
 
   loadAudios () {
-    let audios = ['Rhinoceros', 'syncro', 'gameover']
+    let audios = ['Rhinoceros', 'syncro', 'gameover', 'tic']
 
     audios.forEach(name => {
       this.load.audio(name, [

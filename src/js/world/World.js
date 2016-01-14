@@ -11,9 +11,17 @@ export default class World {
       this.music.loop = true
     }
 
-    this.music.play()
-
     this.input = new Input(this)
+
+    this.PRESSED = {
+      left: false,
+      right: false,
+      space: false
+    }
+  }
+
+  init (data) {
+    this.data = data
   }
 
   update () {
@@ -24,25 +32,25 @@ export default class World {
     this.input.update()
   }
 
-  pause () {
-  }
-
-  resume () {
-  }
-
   on_left_down () {
+    this.PRESSED.left = true
+
     this.players.forEach(player => {
       player.body.velocity.x = player.active ? -VELOCITY : 0
     })
   }
 
   on_right_down () {
+    this.PRESSED.right = true
+
     this.players.forEach(player => {
       player.body.velocity.x = player.active ? VELOCITY : 0
     })
   }
 
   on_spacebar_down () {
+    this.PRESSED.space = true
+
     this.main = (this.main + 1) % 2
 
     this.players.forEach(player => {

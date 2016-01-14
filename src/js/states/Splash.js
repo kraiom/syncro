@@ -9,19 +9,24 @@ const styling = {
 
 const button_style = {
   font: 'Lato',
-  fontSize: '30px',
+  fontSize: '28px',
   fontWeight: 100,
   fill: '#ffffff'
 }
 
 const button_style_over = {
   font: 'Lato',
-  fontSize: '30px',
+  fontSize: '28px',
   fontWeight: 100,
   fill: COLOR
 }
 
 export default class Splash {
+  preload () {
+    this.tic = this.game.add.audio('tic')
+    this.tic.volume = 0.2
+  }
+
   create () {
     this.title = this.add.text(
       this.game.world.centerX,
@@ -32,41 +37,50 @@ export default class Splash {
 
     this.start = this.add.text(
       this.game.world.centerX,
-      this.game.world.centerY + 80,
+      this.game.world.centerY + 90,
       'S t a r t',
       button_style
     )
 
-    // this.sound = this.add.sprite(
-    //   this.game.world.width - 40,
-    //   40,
-    //   this.data.music.mute ? 'off' : 'on'
-    // )
-
-    // this.sound.scale.setTo(0.4)
-
-    // this.sound.inputEnabled = true
-    // this.sound.input.useHandCursor = true
-
-    // this.sound.events.onInputDown.add(() => {
-    //   this.data.music.mute = !this.data.music.mute
-    //
-    //   this.sound.loadTexture(this.data.music.mute ? 'off' : 'on')
-    // })
+    this.tutorial = this.add.text(
+      this.game.world.centerX,
+      this.game.world.centerY + 150,
+      'T u t o r i a l',
+      button_style
+    )
 
     this.start.inputEnabled = true
     this.start.input.useHandCursor = true
 
     this.start.events.onInputDown.add(() => {
-      this.state.start('game', true, false, this.data)
+      this.state.start('game', true, false)
     })
 
     this.start.events.onInputOver.add(() => {
       this.start.setStyle(button_style_over)
+      this.tic.play()
     })
 
     this.start.events.onInputOut.add(() => {
       this.start.setStyle(button_style)
+    })
+
+    this.tutorial.inputEnabled = true
+    this.tutorial.input.useHandCursor = true
+
+    this.tutorial.events.onInputDown.add(() => {
+      this.state.start('game', true, false, {
+        tutorial: true
+      })
+    })
+
+    this.tutorial.events.onInputOver.add(() => {
+      this.tutorial.setStyle(button_style_over)
+      this.tic.play()
+    })
+
+    this.tutorial.events.onInputOut.add(() => {
+      this.tutorial.setStyle(button_style)
     })
 
     const SYNCRO = this.game.add.audio('syncro')
@@ -74,10 +88,6 @@ export default class Splash {
 
     this.title.anchor.setTo(0.5)
     this.start.anchor.setTo(0.5)
-    // this.sound.anchor.setTo(0.5)
-  }
-
-  init (data) {
-    this.data = data
+    this.tutorial.anchor.setTo(0.5)
   }
 }

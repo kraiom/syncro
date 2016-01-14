@@ -11,5 +11,10 @@
     "border": "#454545",
     "trails": "#A39C9C",
     "player": "#ffffff"
-  }
+  },
+  "tutorial": [
+    "Press the arrow keys to move LEFT and RIGHT",
+    "Press the SPACEBAR to change the main trails",
+    "Avoid any obstacle in BOTH trails. Good luck!"
+  ]
 }

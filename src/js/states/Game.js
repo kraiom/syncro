@@ -14,13 +14,9 @@ export default class Game extends World {
 
     this.ui = new UI(this)
 
-    this.paused = false
-
     this.main = 0
 
     this.VELOCITY = 100
-
-    this.START = this.game.time.now
 
     this.ELAPSED = 0
 
@@ -36,10 +32,33 @@ export default class Game extends World {
 
     this.maze = new Maze(this)
 
+    this.TUTORIAL = this.data && this.data.tutorial
+
+    if (this.TUTORIAL) {
+      this.ui.tutorial()
+    } else {
+      this.start()
+    }
+  }
+
+  start () {
     this.maze.accelerate()
+    this.music.play()
+    this.START = this.game.time.now
   }
 
   update () {
+    super.update()
+
+    this.game.physics.arcade.collide(this.players[0], this.rails[0].RB)
+    this.game.physics.arcade.collide(this.players[0], this.rails[0].LB)
+    this.game.physics.arcade.collide(this.players[1], this.rails[1].RB)
+    this.game.physics.arcade.collide(this.players[1], this.rails[1].LB)
+
+    if (this.TUTORIAL) {
+      return this.ui.update()
+    }
+
     const DIFF = parseInt((this.game.time.now - this.START) / 1000)
 
     if (DIFF === this.ELAPSED + 3) {
@@ -49,28 +68,6 @@ export default class Game extends World {
 
     this.VELOCITY = BASE_VELOCITY + this.ELAPSED * 5
 
-    super.update()
     this.maze.update()
-
-    this.game.physics.arcade.collide(this.players[0], this.rails[0].RB)
-    this.game.physics.arcade.collide(this.players[0], this.rails[0].LB)
-    this.game.physics.arcade.collide(this.players[1], this.rails[1].RB)
-    this.game.physics.arcade.collide(this.players[1], this.rails[1].LB)
-  }
-
-  lost () {
-  }
-
-  won () {
-  }
-
-  pause () {
-    this.paused = true
-    super.pause()
-  }
-
-  resume () {
-    this.paused = false
-    super.resume()
   }
 }

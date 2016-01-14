@@ -15,10 +15,6 @@ export default class Input {
   }
 
   update () {
-    if (this.context.paused) {
-      return
-    }
-
     KEYS.forEach(name => {
       if (this.context.game.input.keyboard.isDown(Phaser.Keyboard[name])) {
         this.context[`on_${name.toLowerCase()}_down`]()

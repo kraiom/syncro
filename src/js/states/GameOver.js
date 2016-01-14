@@ -31,6 +31,8 @@ const score_style = {
 export default class GameOver {
   preload () {
     this.gameover = this.game.add.audio('gameover')
+    this.tic = this.game.add.audio('tic')
+    this.tic.volume = 0.2
   }
 
   create () {
@@ -66,6 +68,7 @@ export default class GameOver {
 
     this.again.events.onInputOver.add(() => {
       this.again.setStyle(button_style_over)
+      this.tic.play()
     })
 
     this.again.events.onInputOut.add(() => {
