@@ -1,16 +1,16 @@
 import Rectangle from '../objects/Rectangle'
 
+const GAME = require('../../json/game.json')
+
 const MAIN = {
-  border: '#914410',
-  trail: '#D46A24'
+  border: GAME.active.border,
+  trail: GAME.active.trails
 }
 
 const DEACTIVATED = {
-  border: '#464646',
-  trail: '#a29c9c'
+  border: GAME.deactivated.border,
+  trail: GAME.deactivated.trails
 }
-
-const GAME = require('../../json/game.json')
 
 export default class Rail {
   constructor (context, main = true) {

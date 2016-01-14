@@ -1,5 +1,15 @@
 {
   "name": "syncro",
   "width": 900,
-  "height": 500
+  "height": 500,
+  "active": {
+    "border": "#9D4000",
+    "trails": "#E56502",
+    "player": "#d4d224"
+  },
+  "deactivated": {
+    "border": "#454545",
+    "trails": "#A39C9C",
+    "player": "#ffffff"
+  }
 }

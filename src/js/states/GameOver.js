@@ -1,3 +1,5 @@
+const COLOR = require('../../json/game.json').active.player
+
 export default class GameOver {
   preload () {
     const styling = {
@@ -18,7 +20,7 @@ export default class GameOver {
       font: 'Lato',
       fontSize: '200px',
       fontWeight: 100,
-      fill: '#d4d224'
+      fill: COLOR
     }
 
     this.loading = this.add.text(

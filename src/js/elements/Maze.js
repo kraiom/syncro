@@ -1,13 +1,15 @@
 import Rectangle from '../objects/Rectangle'
 
+const GAME = require('../../json/game.json')
+
 const MAIN = {
-  border: '#914410',
-  trail: '#D46A24'
+  border: GAME.active.border,
+  trail: GAME.active.trails
 }
 
 const DEACTIVATED = {
-  border: '#464646',
-  trail: '#a29c9c'
+  border: GAME.deactivated.border,
+  trail: GAME.deactivated.trails
 }
 
 export default class Maze {
@@ -17,6 +19,11 @@ export default class Maze {
     this.paddles = {
       R: context.game.add.group(),
       L: context.game.add.group()
+    }
+
+    this.last = {
+      R: null,
+      L: null
     }
 
     this._populate()
@@ -32,11 +39,15 @@ export default class Maze {
 
       const j = first ? 0 : 1
 
+      const PADDLE = first ? 'L' : 'R'
+
       const ADJ = (die < 0.5) ? 50 : (this.context.rails[j].T.width - 50)
 
-      const DIF = i * 100
+      const PLUS = Math.floor(Math.random() * 150) + 100
 
-      const PLUS = Math.floor(Math.random() * 40)
+      const BASE = (this.last[PADDLE] === null) ? 0 : this.last[PADDLE].y
+
+      const T = BASE - PLUS
 
       const L = this.context.rails[j].LB.x +
                 this.context.rails[j].LB.width / 2 +
@@ -44,7 +55,7 @@ export default class Maze {
 
       const color = this.context.rails[j].LB.color
 
-      const data = [100, 10, L, 200 - DIF]
+      const data = [100, 10, L, T]
 
       const paddle = new Rectangle(this.context, color, ...data)
 
@@ -54,12 +65,18 @@ export default class Maze {
 
       paddle.body.immovable = true
 
-      paddle._visible = (200 - PLUS - DIF) >= 0
+      paddle._visible = T >= 0
 
       paddle.events.onOutOfBounds.add(this.vanished, paddle)
       paddle.events.onEnterBounds.add(this.appeared, paddle)
 
-      this.paddles[first ? 'L' : 'R'].addChild(paddle)
+      this.paddles[PADDLE].addChild(paddle)
+
+      this.last[PADDLE] = paddle
+
+      if (i === 28 && first) {
+        paddle._populate = this._populate
+      }
     }
   }
 
@@ -82,28 +99,38 @@ export default class Maze {
   }
 
   update () {
-    const side = this.context.main === 0 ? 'L' : 'R'
+    for (let i = 0; i < 2; i++) {
+      const CHILDREN = this.paddles[i === 0 ? 'L' : 'R'].children
 
-    this.paddles[side].children.forEach(paddle => {
-      this.context.game.physics.arcade.collide(
-        this.context.players[this.context.main],
-        paddle,
-        this.context.players[this.context.main].hit,
-        null,
-        this.context.players[this.context.main]
-      )
-    })
+      const LEN = CHILDREN.length
+
+      for (let j = 0; j < LEN; j++) {
+        this.context.game.physics.arcade.collide(
+          this.context.players[i],
+          CHILDREN[j],
+          this.context.players[i].hit,
+          null,
+          this.context.players[i]
+        )
+      }
+    }
   }
 
   // paddle is the context
   appeared () {
     this._visible = true
+
+    if (this._populate) {
+      this._populate()
+      this._populate(false)
+    }
   }
 
   // paddle is the context
   vanished () {
     if (!this.inCamera && this._visible) {
       this.kill()
+      this.destroy()
     }
   }
 }

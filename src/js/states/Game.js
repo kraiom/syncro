@@ -31,15 +31,13 @@ export default class Game extends World {
 
   update () {
     super.update()
-
-    this.rails.forEach(rail => {
-      this.players.forEach(player => {
-        this.game.physics.arcade.collide(player, rail.RB)
-        this.game.physics.arcade.collide(player, rail.LB)
-      })
-    })
-
+    
     this.maze.update()
+
+    this.game.physics.arcade.collide(this.players[0], this.rails[0].RB)
+    this.game.physics.arcade.collide(this.players[0], this.rails[0].LB)
+    this.game.physics.arcade.collide(this.players[1], this.rails[1].RB)
+    this.game.physics.arcade.collide(this.players[1], this.rails[1].LB)
   }
 
   lost () {

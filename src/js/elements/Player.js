@@ -1,7 +1,9 @@
 import Circle from '../objects/Circle'
 
-const DEACTIVATED = '#f2f2f2'
-const MAIN = '#FDD55A'
+const GAME = require('../../json/game.json')
+
+const DEACTIVATED = GAME.deactivated.player
+const MAIN = GAME.active.player
 
 const SIZE = 20
 
@@ -27,10 +29,8 @@ export default class Player extends Circle {
   }
 
   hit () {
-    if (this.active) {
-      const TIME = (this.context.game.time.now - this.context.START) / 1000
+    const TIME = (this.context.game.time.now - this.context.START) / 1000
 
-      this.context.state.start('gameover', true, false, parseInt(TIME))
-    }
+    this.context.state.start('gameover', true, false, parseInt(TIME))
   }
 }
