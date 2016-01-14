@@ -28,18 +28,15 @@ export default class Maze {
 
     this._populate()
     this._populate(false)
-
-    this.paddles.R.setAll('body.velocity.y', 100)
-    this.paddles.L.setAll('body.velocity.y', 100)
   }
 
   _populate (first = true) {
+    const j = first ? 0 : 1
+
+    const PADDLE = first ? 'L' : 'R'
+
     for (let i = 0; i < 30; i++) {
       const die = Math.random()
-
-      const j = first ? 0 : 1
-
-      const PADDLE = first ? 'L' : 'R'
 
       const ADJ = (die < 0.5) ? 50 : (this.context.rails[j].T.width - 50)
 
@@ -80,6 +77,11 @@ export default class Maze {
     }
   }
 
+  fall () {
+    this.paddles.L.setAll('body.velocity.y', this.context.VELOCITY)
+    this.paddles.R.setAll('body.velocity.y', this.context.VELOCITY)
+  }
+
   swap () {
     ['L', 'R'].forEach(side => {
       this.paddles[side].children.forEach(paddle => {
@@ -99,6 +101,8 @@ export default class Maze {
   }
 
   update () {
+    this.fall()
+
     for (let i = 0; i < 2; i++) {
       const CHILDREN = this.paddles[i === 0 ? 'L' : 'R'].children
 

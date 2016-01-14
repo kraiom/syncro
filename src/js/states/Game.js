@@ -4,6 +4,8 @@ import Player from '../elements/Player'
 import Rail from '../elements/Rail'
 import Maze from '../elements/Maze'
 
+const BASE_VELOCITY = 100
+
 export default class Game extends World {
   create () {
     super.create()
@@ -11,6 +13,12 @@ export default class Game extends World {
     this.ui = new UI(this)
 
     this.paused = false
+
+    this.main = 0
+
+    this.VELOCITY = 100
+
+    this.START = this.game.time.now
 
     this.rails = [
       new Rail(this),
@@ -23,15 +31,14 @@ export default class Game extends World {
     ]
 
     this.maze = new Maze(this)
-
-    this.main = 0
-
-    this.START = this.game.time.now
   }
 
   update () {
-    super.update()
+    const VEL_UP = parseInt((this.game.time.now - this.START) / 1000)
+
+    this.VELOCITY = BASE_VELOCITY + VEL_UP * 5
     
+    super.update()
     this.maze.update()
 
     this.game.physics.arcade.collide(this.players[0], this.rails[0].RB)
