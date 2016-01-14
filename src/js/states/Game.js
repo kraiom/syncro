@@ -35,10 +35,17 @@ export default class Game extends World {
     ]
 
     this.maze = new Maze(this)
+
+    this.maze.accelerate()
   }
 
   update () {
-    this.ELAPSED = parseInt((this.game.time.now - this.START) / 1000)
+    const DIFF = parseInt((this.game.time.now - this.START) / 1000)
+
+    if (DIFF === this.ELAPSED + 3) {
+      this.maze.accelerate()
+      this.ELAPSED = DIFF
+    }
 
     this.VELOCITY = BASE_VELOCITY + this.ELAPSED * 5
 

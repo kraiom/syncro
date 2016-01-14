@@ -29,7 +29,13 @@ const score_style = {
 }
 
 export default class GameOver {
+  preload () {
+    this.gameover = this.game.add.audio('gameover')
+  }
+
   create () {
+    this.gameover.play()
+
     this.title = this.add.text(
       this.game.world.centerX,
       this.game.world.centerY - 150,
@@ -51,17 +57,6 @@ export default class GameOver {
       button_style
     )
 
-    this.sound = this.add.sprite(
-      this.game.world.width - 40,
-      40,
-      this.data.music.mute ? 'off' : 'on'
-    )
-
-    this.sound.scale.setTo(0.4)
-
-    this.sound.inputEnabled = true
-    this.sound.input.useHandCursor = true
-
     this.again.inputEnabled = true
     this.again.input.useHandCursor = true
 
@@ -77,16 +72,11 @@ export default class GameOver {
       this.again.setStyle(button_style)
     })
 
-    this.sound.events.onInputDown.add(() => {
-      this.data.music.mute = !this.data.music.mute
-
-      this.sound.loadTexture(this.data.music.mute ? 'off' : 'on')
-    })
-
     this.title.anchor.setTo(0.5)
     this.again.anchor.setTo(0.5)
     this.score.anchor.setTo(0.5)
-    this.sound.anchor.setTo(0.5)
+
+    this.data.music.stop()
   }
 
   init (data) {

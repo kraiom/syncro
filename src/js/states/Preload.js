@@ -46,7 +46,7 @@ export default class Preload {
   */
 
   loadAudios () {
-    let audios = ['Rhinoceros', 'syncro']
+    let audios = ['Rhinoceros', 'syncro', 'gameover']
 
     audios.forEach(name => {
       this.load.audio(name, [

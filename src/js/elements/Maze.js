@@ -82,7 +82,7 @@ export default class Maze {
     }
   }
 
-  fall () {
+  accelerate () {
     this.paddles.L.setAll('body.velocity.y', this.context.VELOCITY)
     this.paddles.R.setAll('body.velocity.y', this.context.VELOCITY)
   }
@@ -106,8 +106,6 @@ export default class Maze {
   }
 
   update () {
-    this.fall()
-
     for (let i = 0; i < 2; i++) {
       const CHILDREN = this.paddles[i === 0 ? 'L' : 'R'].children
 
