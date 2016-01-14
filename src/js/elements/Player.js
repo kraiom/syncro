@@ -31,6 +31,9 @@ export default class Player extends Circle {
   hit () {
     const TIME = (this.context.game.time.now - this.context.START) / 1000
 
-    this.context.state.start('gameover', true, false, parseInt(TIME))
+    this.context.state.start('gameover', true, false, {
+      music: this.context.music,
+      time: parseInt(TIME)
+    })
   }
 }

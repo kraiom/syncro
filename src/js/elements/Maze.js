@@ -36,23 +36,28 @@ export default class Maze {
     const PADDLE = first ? 'L' : 'R'
 
     for (let i = 0; i < 30; i++) {
-      const die = Math.random()
+      const SIDE_DIE = Math.random()
 
-      const ADJ = (die < 0.5) ? 50 : (this.context.rails[j].T.width - 50)
-
-      const PLUS = Math.floor(Math.random() * 150) + 100
+      const PLUS = Math.floor(Math.random() * 170) + 100
 
       const BASE = (this.last[PADDLE] === null) ? 0 : this.last[PADDLE].y
 
-      const T = BASE - PLUS
+      const T = BASE -
+                PLUS +
+                Math.floor(Math.random() * Math.min(this.context.ELAPSED, 30))
+
+      const W = 50 +
+                Math.floor(Math.random() * 50) +
+                Math.floor(Math.random() * Math.min(this.context.ELAPSED, 30))
 
       const L = this.context.rails[j].LB.x +
                 this.context.rails[j].LB.width / 2 +
-                ADJ
+                ((SIDE_DIE < 0.5) ? 50 : (this.context.rails[j].T.width - 50)) +
+                ((SIDE_DIE < 0.5) ? (100 - W) : (W - 100))
 
       const color = this.context.rails[j].LB.color
 
-      const data = [100, 10, L, T]
+      const data = [W, 10, L, T]
 
       const paddle = new Rectangle(this.context, color, ...data)
 

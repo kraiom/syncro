@@ -1,6 +1,6 @@
 import Input from './Input'
 
-const VELOCITY = 200
+const VELOCITY = 250
 
 export default class World {
   create () {

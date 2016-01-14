@@ -10,6 +10,8 @@ export default class Game extends World {
   create () {
     super.create()
 
+    this.game.stage.disableVisibilityChange = true
+
     this.ui = new UI(this)
 
     this.paused = false
@@ -19,6 +21,8 @@ export default class Game extends World {
     this.VELOCITY = 100
 
     this.START = this.game.time.now
+
+    this.ELAPSED = 0
 
     this.rails = [
       new Rail(this),
@@ -34,10 +38,10 @@ export default class Game extends World {
   }
 
   update () {
-    const VEL_UP = parseInt((this.game.time.now - this.START) / 1000)
+    this.ELAPSED = parseInt((this.game.time.now - this.START) / 1000)
 
-    this.VELOCITY = BASE_VELOCITY + VEL_UP * 5
-    
+    this.VELOCITY = BASE_VELOCITY + this.ELAPSED * 5
+
     super.update()
     this.maze.update()
 
