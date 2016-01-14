@@ -37,6 +37,7 @@ export default class Preload {
   loadSprites () {
     this.load.image('on', 'assets/img/on.png')
     this.load.image('off', 'assets/img/off.png')
+    this.load.image('kraiom', 'assets/img/kraiom.png')
   }
 
   /*

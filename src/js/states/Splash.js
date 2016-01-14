@@ -24,10 +24,13 @@ const button_style_over = {
 export default class Splash {
   preload () {
     this.tic = this.game.add.audio('tic')
+    this.syncro = this.game.add.audio('syncro')
     this.tic.volume = 0.2
   }
 
   create () {
+    this.syncro.play()
+
     this.title = this.add.text(
       this.game.world.centerX,
       this.game.world.centerY - 100,
@@ -37,15 +40,22 @@ export default class Splash {
 
     this.start = this.add.text(
       this.game.world.centerX,
-      this.game.world.centerY + 90,
+      this.game.world.centerY + 70,
       'S t a r t',
       button_style
     )
 
     this.tutorial = this.add.text(
       this.game.world.centerX,
-      this.game.world.centerY + 150,
+      this.game.world.centerY + 120,
       'T u t o r i a l',
+      button_style
+    )
+
+    this.credits = this.add.text(
+      this.game.world.centerX,
+      this.game.world.centerY + 170,
+      'A b o u t',
       button_style
     )
 
@@ -83,11 +93,25 @@ export default class Splash {
       this.tutorial.setStyle(button_style)
     })
 
-    const SYNCRO = this.game.add.audio('syncro')
-    SYNCRO.play()
+    this.credits.inputEnabled = true
+    this.credits.input.useHandCursor = true
+
+    this.credits.events.onInputDown.add(() => {
+      this.state.start('about', true, false)
+    })
+
+    this.credits.events.onInputOver.add(() => {
+      this.credits.setStyle(button_style_over)
+      this.tic.play()
+    })
+
+    this.credits.events.onInputOut.add(() => {
+      this.credits.setStyle(button_style)
+    })
 
     this.title.anchor.setTo(0.5)
     this.start.anchor.setTo(0.5)
+    this.credits.anchor.setTo(0.5)
     this.tutorial.anchor.setTo(0.5)
   }
 }
