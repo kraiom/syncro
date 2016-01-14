@@ -25,7 +25,7 @@ export default class Preload {
   }
 
   create () {
-    this.state.start('game', true, false)
+    this.state.start('splash', true, false)
   }
 
   /*
