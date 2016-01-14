@@ -26,11 +26,10 @@ export default class Splash {
     this.tic = this.game.add.audio('tic')
     this.syncro = this.game.add.audio('syncro')
     this.tic.volume = 0.2
+    this.game.stage.backgroundColor = '#10101C'
   }
 
   create () {
-    this.syncro.play()
-
     this.title = this.add.text(
       this.game.world.centerX,
       this.game.world.centerY - 100,
@@ -113,5 +112,7 @@ export default class Splash {
     this.start.anchor.setTo(0.5)
     this.credits.anchor.setTo(0.5)
     this.tutorial.anchor.setTo(0.5)
+
+    this.syncro.play()
   }
 }

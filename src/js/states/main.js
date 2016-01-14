@@ -4,6 +4,7 @@ import Preload from './Preload'
 import Boot from './Boot'
 import GameOver from './GameOver'
 import About from './About'
+import Kraiom from './Kraiom'
 
 const GAME_DATA = require('../../json/game')
 
@@ -23,6 +24,7 @@ window.GAME = function (handler) {
   game.state.add('game', Game)
   game.state.add('gameover', GameOver)
   game.state.add('about', About)
+  game.state.add('kraiom', Kraiom)
 
   game.state.start('boot', true, false, handler)
 }

@@ -20,7 +20,7 @@ const text_style = {
   fontWeight: 100,
   fill: '#ffffff',
   wordWrap: true,
-  wordWrapWidth: 450
+  wordWrapWidth: 430
 }
 
 const button_style_over = {
@@ -54,28 +54,25 @@ export default class About {
     const cc = this.add.text(
       30,
       250,
-      `Assets licensed under Creative Commons: By Attribution 3.0 License (creativecommons.org/licenses/by/3.0/)
+      `Assets licensed under Creative Commons:
+      By Attribution 3.0 License (creativecommons.org/licenses/by/3.0/)
 
       - "Rhinoceros" Kevin MacLeod (incompetech.com)
       - "korgpoly800bs C6" patchen (freesound.org)
-      - "Mute Icon" and "Medium, volume icon" Visual Pharm (icons8.com)`,
+      - "Mute Icon" Visual Pharm (icons8.com)
+      - "Medium, volume icon" Visual Pharm (icons8.com)`,
       text_style
     )
 
-    const kraiomText = this.add.text(
-      610,
-      430,
-      'Kraiom © 2016',
+    this.add.text(
+      500,
+      250,
+      `Copyright © 2016
+
+      Breno Freitas (breno.io)
+      Eduardo Rocha (@romaoneles)`,
       button_style
     )
-
-    const kraiom = this.add.sprite(
-      650,
-      250,
-      'kraiom'
-    )
-
-    kraiom.scale.setTo(0.4)
 
     back.inputEnabled = true
     back.input.useHandCursor = true

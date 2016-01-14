@@ -25,9 +25,7 @@ export default class World {
   }
 
   update () {
-    this.players.forEach(player => {
-      player.body.velocity.x = 0
-    })
+    this.players.forEach(player => player.body.velocity.x = 0)
 
     this.input.update()
   }
@@ -53,14 +51,8 @@ export default class World {
 
     this.main = (this.main + 1) % 2
 
-    this.players.forEach(player => {
-      player.swap()
-    })
-
-    this.rails.forEach(rail => {
-      rail.swap()
-    })
-
+    this.players.forEach(player => player.swap())
+    this.rails.forEach(rail => rail.swap())
     this.maze.swap()
   }
 }

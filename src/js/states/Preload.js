@@ -25,7 +25,7 @@ export default class Preload {
   }
 
   create () {
-    this.state.start('splash', true, false)
+    this.state.start('kraiom', true, false)
   }
 
   /*
