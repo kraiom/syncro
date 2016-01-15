@@ -16,6 +16,10 @@ export default class Maze {
       L: null
     }
 
+    this.populate()
+  }
+
+  populate () {
     this._populate()
     this._populate(false)
   }
@@ -25,7 +29,7 @@ export default class Maze {
 
     const PADDLE = first ? 'L' : 'R'
 
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < GAME.INIT_PADDLES; i++) {
       const GO_LEFT = Math.random() < 0.5
 
       const STICK_TO_WALL = Math.random() < 0.3
@@ -58,7 +62,11 @@ export default class Maze {
             this.context.rails[j].T.width / 2
       }
 
-      const color = first ? GAME.borderA : GAME.borderB
+      let color = GAME.borderB
+
+      if (this.context.players[j].active) {
+        color = GAME.borderA
+      }
 
       const data = [W, 10, L, T]
 
@@ -75,8 +83,8 @@ export default class Maze {
 
       this.last[PADDLE] = paddle
 
-      if (i === 28 && first) {
-        paddle._populate = this._populate
+      if (i === GAME.INIT_PADDLES - 5 && first) {
+        paddle._populate = this.populate.bind(this)
       }
     }
   }
@@ -114,7 +122,6 @@ export default class Maze {
     if (this.y >= 0) {
       if (this._populate) {
         this._populate()
-        this._populate(false)
       }
 
       this.kill()

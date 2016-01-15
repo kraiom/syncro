@@ -2,6 +2,7 @@
   "name": "syncro",
   "width": 800,
   "height": 500,
+  "INIT_PADDLES": 30,
   "active": {
     "border": "#9D4000",
     "trails": "#E56502",
