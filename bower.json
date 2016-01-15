@@ -18,6 +18,12 @@
     "tests"
   ],
   "dependencies": {
-    "phaser": "~2.4.4"
+    "phaser": "~2.4.4",
+    "phaser-debug": "https://github.com/englercj/phaser-debug.git#~1.1.8"
+  },
+  "overrides": {
+    "phaser": {
+      "main": "./build/phaser.min.js"
+    }
   }
 }

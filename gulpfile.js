@@ -49,13 +49,7 @@ gulp.task('scripts', ['json'], function () {
 
     return gulp
     .src('./bower.json')
-    .pipe(bower({
-      overrides: {
-        phaser: {
-          main: './build/phaser.min.js'
-        }
-      }
-    }))
+    .pipe(bower())
     .pipe(flatten())
     .pipe(gulp.dest('./build/assets/libs/'))
 })

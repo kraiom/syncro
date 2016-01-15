@@ -17,8 +17,8 @@ export default class Maze {
     this.context = context
 
     this.paddles = {
-      R: context.game.add.group(),
-      L: context.game.add.group()
+      R: context.game.add.physicsGroup(),
+      L: context.game.add.physicsGroup()
     }
 
     this.last = {
@@ -72,7 +72,8 @@ export default class Maze {
 
       const data = [W, 10, L, T]
 
-      const paddle = new Rectangle(this.context, color, ...data)
+      const paddle = new Rectangle(this.context, color, ...data,
+        this.paddles[PADDLE])
 
       this.context.game.physics.arcade.enable(paddle)
 
@@ -80,12 +81,7 @@ export default class Maze {
 
       paddle.body.immovable = true
 
-      paddle._visible = T >= 0
-
       paddle.events.onOutOfBounds.add(this.vanished, paddle)
-      paddle.events.onEnterBounds.add(this.appeared, paddle)
-
-      this.paddles[PADDLE].addChild(paddle)
 
       this.last[PADDLE] = paddle
 
@@ -120,36 +116,31 @@ export default class Maze {
   }
 
   update () {
-    for (let i = 0; i < 2; i++) {
-      const CHILDREN = this.paddles[i === 0 ? 'L' : 'R'].children
+    this.context.game.physics.arcade.collide(
+      this.context.players[0],
+      this.paddles.L,
+      this.context.lose,
+      null,
+      this.context
+    )
 
-      const LEN = CHILDREN.length
-
-      for (let j = 0; j < LEN; j++) {
-        this.context.game.physics.arcade.collide(
-          this.context.players[i],
-          CHILDREN[j],
-          this.context.players[i].hit,
-          null,
-          this.context.players[i]
-        )
-      }
-    }
-  }
-
-  // paddle is the context
-  appeared () {
-    this._visible = true
-
-    if (this._populate) {
-      this._populate()
-      this._populate(false)
-    }
+    this.context.game.physics.arcade.collide(
+      this.context.players[1],
+      this.paddles.R,
+      this.context.lose,
+      null,
+      this.context
+    )
   }
 
   // paddle is the context
   vanished () {
-    if (!this.inCamera && this._visible) {
+    if (this.y >= 0) {
+      if (this._populate) {
+        this._populate()
+        this._populate(false)
+      }
+
       this.kill()
       this.destroy()
     }

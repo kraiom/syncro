@@ -70,4 +70,12 @@ export default class Game extends World {
 
     this.maze.update()
   }
+
+  lose () {
+    const TIME = (this.game.time.now - this.START) / 1000
+
+    this.music.stop()
+
+    this.game.state.start('gameover', true, false, parseInt(TIME))
+  }
 }

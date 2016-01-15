@@ -48,7 +48,7 @@ export default class GameOver {
     this.score = this.add.text(
       this.game.world.centerX,
       this.game.world.centerY + 20,
-      this.data.time + '\'',
+      this.time + '\'',
       score_style
     )
 
@@ -78,11 +78,9 @@ export default class GameOver {
     this.title.anchor.setTo(0.5)
     this.again.anchor.setTo(0.5)
     this.score.anchor.setTo(0.5)
-
-    this.data.music.stop()
   }
 
-  init (data) {
-    this.data = data
+  init (time) {
+    this.time = time
   }
 }

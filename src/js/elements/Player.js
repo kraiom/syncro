@@ -27,13 +27,4 @@ export default class Player extends Circle {
 
     this.recolorShape(this.active ? MAIN : DEACTIVATED)
   }
-
-  hit () {
-    const TIME = (this.context.game.time.now - this.context.START) / 1000
-
-    this.context.state.start('gameover', true, false, {
-      music: this.context.music,
-      time: parseInt(TIME)
-    })
-  }
 }
