@@ -14,6 +14,13 @@ const button_style = {
   fill: '#ffffff'
 }
 
+const text_style_2 = {
+  font: 'Lato',
+  fontSize: '24px',
+  fontWeight: 100,
+  fill: '#ffffff'
+}
+
 const text_style = {
   font: 'Lato',
   fontSize: '18px',
@@ -65,13 +72,13 @@ export default class About {
     )
 
     this.add.text(
-      500,
+      450,
       250,
       `Copyright © 2016
 
       Breno Freitas (breno.io)
       Eduardo Rocha (@romaoneles)`,
-      button_style
+      text_style_2
     )
 
     back.inputEnabled = true
