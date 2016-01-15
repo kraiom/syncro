@@ -101,21 +101,22 @@ export default class Maze {
   }
 
   swap () {
-    ['L', 'R'].forEach(side => {
-      this.paddles[side].children.forEach(paddle => {
+    for (let i = 0; i < 2; i++) {
+      const CHILDREN = this.paddles[i === 0 ? 'L' : 'R'].children
+
+      const LEN = CHILDREN.length
+
+      for (let j = 0; j < LEN; j++) {
         let color = MAIN
 
-        if (side === 'L' && this.context.main === 1) {
+        if (i === 0 && this.context.main === 1 ||
+            i === 1 && this.context.main === 0) {
           color = DEACTIVATED
         }
 
-        if (side === 'R' && this.context.main === 0) {
-          color = DEACTIVATED
-        }
-
-        paddle.recolorShape(color.border)
-      })
-    })
+        CHILDREN[j].recolorShape(color.border)
+      }
+    }
   }
 
   update () {

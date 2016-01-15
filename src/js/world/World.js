@@ -25,7 +25,8 @@ export default class World {
   }
 
   update () {
-    this.players.forEach(player => player.body.velocity.x = 0)
+    this.players[0].body.velocity.x = 0
+    this.players[1].body.velocity.x = 0
 
     this.input.update()
   }
@@ -33,17 +34,17 @@ export default class World {
   on_left_down () {
     this.PRESSED.left = true
 
-    this.players.forEach(player => {
-      player.body.velocity.x = player.active ? -VELOCITY : 0
-    })
+    const i = this.players[0].active ? 0 : 1
+
+    this.players[i].body.velocity.x = -VELOCITY
   }
 
   on_right_down () {
     this.PRESSED.right = true
 
-    this.players.forEach(player => {
-      player.body.velocity.x = player.active ? VELOCITY : 0
-    })
+    const i = this.players[0].active ? 0 : 1
+
+    this.players[i].body.velocity.x = VELOCITY
   }
 
   on_spacebar_down () {
@@ -51,8 +52,12 @@ export default class World {
 
     this.main = (this.main + 1) % 2
 
-    this.players.forEach(player => player.swap())
-    this.rails.forEach(rail => rail.swap())
+    this.players[0].swap()
+    this.players[1].swap()
+
+    this.rails[0].swap()
+    this.rails[1].swap()
+
     this.maze.swap()
   }
 }
