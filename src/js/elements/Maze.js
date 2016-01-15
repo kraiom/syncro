@@ -2,16 +2,6 @@ import Rectangle from '../objects/Rectangle'
 
 const GAME = require('../../json/game.json')
 
-const MAIN = {
-  border: GAME.active.border,
-  trail: GAME.active.trails
-}
-
-const DEACTIVATED = {
-  border: GAME.deactivated.border,
-  trail: GAME.deactivated.trails
-}
-
 export default class Maze {
   constructor (context) {
     this.context = context
@@ -68,7 +58,7 @@ export default class Maze {
             this.context.rails[j].T.width / 2
       }
 
-      const color = this.context.rails[j].LB.color
+      const color = first ? GAME.borderA : GAME.borderB
 
       const data = [W, 10, L, T]
 
@@ -97,22 +87,8 @@ export default class Maze {
   }
 
   swap () {
-    for (let i = 0; i < 2; i++) {
-      const CHILDREN = this.paddles[i === 0 ? 'L' : 'R'].children
-
-      const LEN = CHILDREN.length
-
-      for (let j = 0; j < LEN; j++) {
-        let color = MAIN
-
-        if (i === 0 && this.context.main === 1 ||
-            i === 1 && this.context.main === 0) {
-          color = DEACTIVATED
-        }
-
-        CHILDREN[j].recolorShape(color.border)
-      }
-    }
+    this.paddles.L.callAll('swap')
+    this.paddles.R.callAll('swap')
   }
 
   update () {

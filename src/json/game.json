@@ -16,5 +16,11 @@
     "Press the arrow keys to move LEFT and RIGHT",
     "Press the SPACEBAR to change the main trails",
     "Avoid any obstacle in BOTH trails. Good luck!"
-  ]
+  ],
+  "borderA": ["#9D4000", "#454545"],
+  "borderB": ["#454545", "#9D4000"],
+  "trailA":  ["#E56502", "#A39C9C"],
+  "trailB":  ["#A39C9C", "#E56502"],
+  "playerA": ["#d4d224", "#ffffff"],
+  "playerB": ["#ffffff", "#d4d224"]
 }

@@ -2,29 +2,20 @@ import Rectangle from '../objects/Rectangle'
 
 const GAME = require('../../json/game.json')
 
-const MAIN = {
-  border: GAME.active.border,
-  trail: GAME.active.trails
-}
-
-const DEACTIVATED = {
-  border: GAME.deactivated.border,
-  trail: GAME.deactivated.trails
-}
-
 export default class Rail {
   constructor (context, main = true) {
     this.context = context
 
-    const color = main ? MAIN : DEACTIVATED
+    const border = main ? GAME.borderA : GAME.borderB
+    const trail = main ? GAME.trailA : GAME.trailB
 
     this.active = main
 
     const pos = this._computePosition()
 
-    this.LB = new Rectangle(context, color.border, ...pos.LB)
-    this.RB = new Rectangle(context, color.border, ...pos.RB)
-    this.T = new Rectangle(context, color.trail, ...pos.T)
+    this.LB = new Rectangle(context, border, ...pos.LB)
+    this.RB = new Rectangle(context, border, ...pos.RB)
+    this.T = new Rectangle(context, trail, ...pos.T)
 
     context.game.physics.arcade.enable([
       this.LB,
@@ -47,11 +38,9 @@ export default class Rail {
   swap () {
     this.active = !this.active
 
-    const color = this.active ? MAIN : DEACTIVATED
-
-    this.LB.recolorShape(color.border)
-    this.RB.recolorShape(color.border)
-    this.T.recolorShape(color.trail)
+    this.LB.swap()
+    this.RB.swap()
+    this.T.swap()
   }
 
   _computePosition () {
