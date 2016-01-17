@@ -14,7 +14,7 @@ window.GAME = function (handler) {
   let game = new Phaser.Game(
     GAME_DATA.width,
     GAME_DATA.height,
-    Phaser.AUTO,
+    Phaser.CANVAS,
     handler.target
   )
 

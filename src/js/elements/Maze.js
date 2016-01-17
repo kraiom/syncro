@@ -32,7 +32,7 @@ export default class Maze {
     for (let i = 0; i < GAME.INIT_PADDLES; i++) {
       const GO_LEFT = Math.random() < 0.5
 
-      const STICK_TO_WALL = Math.random() < 0.3
+      // const STICK_TO_WALL = Math.random() < 0.3
 
       const MIDDLE_BLOCK = Math.random() < 0.2
 
@@ -50,8 +50,7 @@ export default class Maze {
 
       let L = this.context.rails[j].LB.x +
               this.context.rails[j].LB.width / 2 +
-              (GO_LEFT ? 50 : (this.context.rails[j].T.width - 50)) +
-              (STICK_TO_WALL ? Math.abs(Math.floor((W - 100) / 2)) : 0)
+              (GO_LEFT ? 0 : (this.context.rails[j].T.width - W))
 
       if (MIDDLE_BLOCK) {
         W = 20 +
@@ -59,7 +58,9 @@ export default class Maze {
             Math.floor(Math.random() * Math.min(this.context.ELAPSED * 2, 50))
 
         L = this.context.rails[j].LB.x +
-            this.context.rails[j].T.width / 2
+            this.context.rails[j].LB.width / 2 +
+            this.context.rails[j].T.width / 2 -
+            Math.floor(W / 2)
       }
 
       let color = GAME.borderB
@@ -72,6 +73,8 @@ export default class Maze {
 
       const paddle = new Rectangle(this.context, color, ...data,
         this.paddles[PADDLE])
+
+      paddle.anchor.set(0, 0)
 
       this.context.game.physics.arcade.enable(paddle)
 
