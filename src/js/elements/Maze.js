@@ -69,7 +69,7 @@ export default class Maze {
         color = GAME.borderA
       }
 
-      const data = [W, 10, L, T]
+      const data = [W, this.context.rails[j].LB.width, L, T]
 
       const paddle = new Rectangle(this.context, color, ...data,
         this.paddles[PADDLE])

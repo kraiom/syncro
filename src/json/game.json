@@ -18,10 +18,13 @@
     "Press the SPACEBAR to change the main trails",
     "Avoid any obstacle in BOTH trails. Good luck!"
   ],
-  "borderA": ["#9D4000", "#454545"],
-  "borderB": ["#454545", "#9D4000"],
-  "trailA":  ["#E56502", "#A39C9C"],
-  "trailB":  ["#A39C9C", "#E56502"],
-  "playerA": ["#d4d224", "#ffffff"],
-  "playerB": ["#ffffff", "#d4d224"]
+  "bg": "#2A2524",
+  "borderB": ["#F6EAD5", "#d4b463"],
+  "borderA": ["#d4b463", "#F6EAD5"],
+  "trailA":  ["#2A2524", "#2A2524"],
+  "trailB":  ["#2A2524", "#2A2524"],
+  "playerB": ["#F6EAD5", "#d4b463"],
+  "playerA": ["#d4b463", "#F6EAD5"],
+  "_trailA":  ["#E56502", "#A39C9C"],
+  "_trailB":  ["#A39C9C", "#E56502"]
 }

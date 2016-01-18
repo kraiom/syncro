@@ -1,4 +1,5 @@
 const COLOR = require('../../json/game.json').active.player
+const BG = require('../../json/game.json').bg
 
 const styling = {
   font: 'Lato',
@@ -26,7 +27,7 @@ export default class Splash {
     this.tic = this.game.add.audio('tic')
     this.syncro = this.game.add.audio('syncro')
     this.tic.volume = 0.2
-    this.game.stage.backgroundColor = '#10101C'
+    this.game.stage.backgroundColor = BG
   }
 
   create () {
