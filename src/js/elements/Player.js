@@ -10,7 +10,7 @@ export default class Player extends Circle {
   constructor (context, center, main = true) {
     const colors = main ? GAME.playerA : GAME.playerB
 
-    super(context, colors, 20, center.x, center.y - SIZE - MARGIN)
+    super(context, colors, 16, center.x, center.y - SIZE - MARGIN)
 
     this.active = main
 

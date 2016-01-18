@@ -32,9 +32,9 @@ export default class Maze {
     for (let i = 0; i < GAME.INIT_PADDLES; i++) {
       const GO_LEFT = Math.random() < 0.5
 
-      // const STICK_TO_WALL = Math.random() < 0.3
+      const MIDDLE_BLOCK = Math.random() < 0.3
 
-      const MIDDLE_BLOCK = Math.random() < 0.2
+      let MOVING = false
 
       const PLUS = Math.floor(Math.random() * 170) + 100
 
@@ -53,6 +53,8 @@ export default class Maze {
               (GO_LEFT ? 0 : (this.context.rails[j].T.width - W))
 
       if (MIDDLE_BLOCK) {
+        MOVING = Math.random() < 0.3
+
         W = 20 +
             Math.floor(Math.random() * 60) +
             Math.floor(Math.random() * Math.min(this.context.ELAPSED * 2, 50))
@@ -60,7 +62,7 @@ export default class Maze {
         L = this.context.rails[j].LB.x +
             this.context.rails[j].LB.width / 2 +
             this.context.rails[j].T.width / 2 -
-            Math.floor(W / 2)
+            (MOVING ? 0 : Math.floor(W / 2))
       }
 
       let color = GAME.borderB
@@ -77,6 +79,11 @@ export default class Maze {
       paddle.anchor.set(0, 0)
 
       this.context.game.physics.arcade.enable(paddle)
+
+      if (MOVING) {
+        paddle.body.angularVelocity = 15
+        paddle.anchor.set(0.5, 0.5)
+      }
 
       paddle.checkWorldBounds = true
 
