@@ -6,13 +6,13 @@
   "scripts": {
     "test": "gulp code-check",
     "start": "gulp serve",
-    "deploy": "rm -rf build && bower install && gulp --production",
-    "postinstall": "npm run deploy",
-    "heroku": "http-server build -p $PORT"
+    "clear": "rm -rf build && bower install",
+    "build": "gulp --production",
+    "deploy": "yarn clear && yarn build && gulp deploy"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/brenolf/syncro.git"
+    "url": "https://github.com/kraiom/syncro.git"
   },
   "author": [
     "Breno Lima de Freitas <brenolimadefreitas@gmail.com> (https://breno.io/)",
@@ -20,30 +20,33 @@
   ],
   "license": "Apache 2.0",
   "bugs": {
-    "url": "https://github.com/brenolf/syncro/issues"
+    "url": "https://github.com/kraiom/syncro/issues"
   },
-  "homepage": "https://github.com/brenolf/syncro",
+  "homepage": "https://github.com/kraiom/syncro",
   "dependencies": {
     "babel": "latest",
     "babelify": "^6.1.3",
     "bower": "^1.7.2",
     "browserify": "^9.0.8",
     "browserify-shim": "^3.8.6",
-    "gulp": "^3.9.0",
+    "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-connect": "^2.2.0",
     "gulp-cssnano": "^2.1.0",
     "gulp-flatten": "^0.2.0",
+    "gulp-gh-pages-cname": "^0.5.2",
     "gulp-if": "^1.2.5",
     "gulp-imagemin": "^2.2.1",
     "gulp-jscs": "latest",
     "gulp-jshint": "latest",
+    "gulp-load-plugins": "^1.5.0",
     "gulp-main-bower-files": "^1.2.5",
     "gulp-uglify": "^1.2.0",
     "http-server": "^0.8.5",
     "jscs": "^2.8.0",
     "jshint": "^2.8.0",
     "jshint-stylish": "^1.0.1",
+    "postcss": "^6.0.1",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "yargs": "^3.23.0"
